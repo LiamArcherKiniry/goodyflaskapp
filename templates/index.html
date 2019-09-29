@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" type="text/css" href="/static/style.css">
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/normalize/5.0.0/normalize.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+  </head>
+    
+  <body>
+      <div class="holder">
+          <div class="centering">
+                        <div class="eyelid">
+                            <div class="eye">
+                              <div class="outline"></div>
+                              <div class="outline"></div>
+                              <div class="pupil"></div>
+                            </div>
+                        </div>
+          </div>
+    </div>
+
+        <div class="chat">
+          <div class="chat-title">
+              <h1 class="">GOODY</h1>
+              <figure class="avatar">
+                <img src="https://iruntheinternet.com/lulzdump/images/YOSPOS-computer-witch-witch-on-the-internet-PC-1423661476J.jpg" /></figure>
+              
+          </div>
+          <div class="messages">
+            <div id="chatWindow" class="messages-content mCustomScrollbar _mCS_1">
+                <div id="mCSB_1" class="mCustomScrollBox mCS-light mCSB_vertical mCSB_inside" style="max-height: none;" tabindex="0">
+                    <div id="chatbox" class="mCSB_container mCS_y_hidden mCS_no_scrollbar_y" style="position:relative; top:0; left:0;" dir="ltr">
+                        <div class="message new">
+                            <figure class="avatar"><img src="https://iruntheinternet.com/lulzdump/images/YOSPOS-computer-witch-witch-on-the-internet-PC-1423661476J.jpg"></figure>Tis now the very witching time of night, when churchyards yawn and hell itself breathes out contagion to this world.
+                        </div>
+                    </div>
+                </div>
+            </div>
+          </div>
+          <div class="message-box">
+            <textarea id="textInput" type="text" name="msg" class="message-input" placeholder="Type message..."></textarea>
+            <button id="buttonInput" type="submit" value="Send" class="message-submit">Send</button>
+          </div>
+
+        </div>
+        
+      <script>
+          var objDiv = document.getElementById("chatWindow");
+
+        function getBotResponse() {
+          var rawText = $("#textInput").val();
+          var userHtml = '<div class="message message-personal new">' + rawText + '</div>';    
+          $("#textInput").val("");
+          $("#chatbox").append(userHtml);
+            objDiv.scrollTop = objDiv.scrollHeight;
+          $.get("/get", { msg: rawText }).done(function(data) {
+            var botHtml = '<div class="message new"> <figure class="avatar"><img src="https://iruntheinternet.com/lulzdump/images/YOSPOS-computer-witch-witch-on-the-internet-PC-1423661476J.jpg"></figure>' + data + '</div>';
+              
+            $("#chatbox").append(botHtml);
+              objDiv.scrollTop = objDiv.scrollHeight;
+          });
+            
+        }
+        $("#textInput").keypress(function(e) {
+            if(e.which == 13) {
+                getBotResponse();
+            }
+        });
+        $("#buttonInput").click(function() {
+          getBotResponse();
+        })
+      </script>
+    
+<script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/malihu-custom-scrollbar-plugin/3.1.3/jquery.mCustomScrollbar.concat.min.js'></script>
+<script  src="../static/script.js"></script>
+  </body>
+</html>
