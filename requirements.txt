@@ -35,3 +35,4 @@ wasabi==0.2.2
 Werkzeug==0.16.0
 whitenoise==3.2.2
 psycopg2
+gevent
