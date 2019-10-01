@@ -6,6 +6,9 @@ import os
 
 app = Flask(__name__)
 app.config['SECRET_KEY'] = os.environ.get('SECRET_KEY', 'XYZ')
+# SECURITY WARNING: don't run with debug turned on in production!
+#DEBUG = True
+ALLOWED_HOSTS = ['127.0.0.1', 'goodychat.herokuapp.com']
 
 
 list  = [
@@ -586,10 +589,10 @@ from chatterbot.trainers import ListTrainer
 # First, lets train our bot with some data
 trainer = ChatterBotCorpusTrainer(bot)
 
-trainer.train(
-    #"chatterbot.corpus.english.greetings",
-    "chatterbot.corpus.english.conversations"
-)
+# trainer.train(
+#     #"chatterbot.corpus.english.greetings",
+#     "chatterbot.corpus.english.conversations"
+# )
 
 trainer = ListTrainer(bot)
 
